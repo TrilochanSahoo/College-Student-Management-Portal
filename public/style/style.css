@@ -30,7 +30,7 @@ header{
     top: 0;
     left: 0;
 }
-.container{
+header .container{
     width: 100%;
     /* max-width: 117rem; */
     margin: 0 auto;
@@ -141,13 +141,19 @@ nav{
     visibility: visible; 
 }
 
+section .title{
+    font-size: 50px;
+    margin-bottom: 5rem;
+    color: white;
+}
+
 footer{
     position: relative;
     width: 100%;
     height: auto;
     padding: 50px 100px;
     background: #111;
-    display: flex;
+    /* display: flex; */
     justify-content: space-between;
     flex-wrap: wrap;
 }

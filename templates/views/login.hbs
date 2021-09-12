@@ -14,20 +14,20 @@
     <div class="bg-img">
         <div class="loginContent">
             <header>Login Form</header>
-            <form action="#" method="post">
+            <form action="/login" method="post">
                 <div class="field user">
                     <span class="fa fa-user"></span>
-                    <input type="text" required placeholder="Email or phone">
+                    <input type="text" id="userid" name="userid" placeholder="User Id">
                 </div>
                 <div class="field user space">
                     <span class="fa fa-lock"></span>
-                    <input type="password" required placeholder="password">
+                    <input type="password" id="password" name="password" placeholder="password">
                 </div>
                 <div class="pass">
                     <a href="">Forget password</a>
                 </div>
                 <div class="field">
-                    <input type="submit" placeholder="LogIn">
+                    <button type="submit">log in</button>
                 </div>
             </form>
         </div>
