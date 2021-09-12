@@ -19,10 +19,9 @@ app.use(express.urlencoded({extended:false}))
 app.set("view engine", "hbs")
 app.set("views", view_path)
 hbs.registerPartials(partials_path)
-
 app.use(express.static(static_path))
 
-// routing 
+// Home  
 app.get('/',(req, res)=>{
     res.render("index")
 })
@@ -39,6 +38,8 @@ app.get('/login',(req, res)=>{
     res.render("login")
 })
 
+
+// login 
 app.get('/adminLogin',(req, res)=>{
     res.render("adminLogin")
 })
@@ -47,12 +48,6 @@ app.get('/studentLogin',(req, res)=>{
 })
 app.get('/staffLogin',(req, res)=>{
     res.render("staffLogin")
-})
-
-app.get('*',(req, res)=>{
-    res.render("404error",{
-        errorMsg : "opps! page not found"
-    })
 })
 
 app.post("/adminLogin", async(req, res)=>{
@@ -70,6 +65,27 @@ app.post("/adminLogin", async(req, res)=>{
     } catch (error) {
         res.status(400).send(error)
     }
+})
+
+// admin dashboard 
+app.get('/adminDashboard',(req, res)=>{
+    res.render("adminDashboard")
+})
+
+app.get('/studentRegistration',(req, res)=>{
+    res.render("studentRegistration")
+})
+
+app.get('/adminDashboard',(req, res)=>{
+    res.render("adminDashboard")
+})
+
+
+
+app.get('*',(req, res)=>{
+    res.render("404error",{
+        errorMsg : "opps! page not found"
+    })
 })
 
 app.listen(port,()=>{
