@@ -39,20 +39,30 @@ app.get('/login',(req, res)=>{
     res.render("login")
 })
 
+app.get('/adminLogin',(req, res)=>{
+    res.render("adminLogin")
+})
+app.get('/studentLogin',(req, res)=>{
+    res.render("studentLogin")
+})
+app.get('/staffLogin',(req, res)=>{
+    res.render("staffLogin")
+})
+
 app.get('*',(req, res)=>{
     res.render("404error",{
         errorMsg : "opps! page not found"
     })
 })
 
-app.post("/login", async(req, res)=>{
+app.post("/adminLogin", async(req, res)=>{
     try {
         const userid = req.body.userid
         const password = req.body.password
 
         const userName = await Admindb.findOne({userid:userid})
         if(userName.password===password){
-            res.status(201).render("index")
+            res.status(201).render("adminDashboard")
         }
         else{
             res.send("password are not matching")

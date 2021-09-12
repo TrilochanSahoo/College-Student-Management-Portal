@@ -12,7 +12,7 @@ html{
 }
 body{
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     min-height: 100vh;
     flex-direction: column;
@@ -143,11 +143,12 @@ nav{
 
 section .title{
     font-size: 50px;
-    margin-bottom: 5rem;
+    margin-top: 15rem;
     color: white;
 }
 
 footer{
+    margin-top: auto;
     position: relative;
     width: 100%;
     height: auto;

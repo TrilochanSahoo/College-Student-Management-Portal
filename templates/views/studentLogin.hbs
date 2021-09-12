@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="style/loginStyle.css">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css" integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">
+</head>
+<body>
+    {{!-- {{>navbar}} --}}
+    <div class="bg-img">
+        <div class="loginContent">
+            <header>Student Login Form</header>
+            <form action="/adminLogin" method="post">
+                <div class="field user">
+                    <span class="fa fa-user"></span>
+                    <input type="text" id="userid" name="userid" placeholder="User Id">
+                </div>
+                <div class="field user space">
+                    <span class="fa fa-lock"></span>
+                    <input type="password" id="password" name="password" placeholder="password">
+                </div>
+                <div class="pass">
+                    <a href="">Forget password</a>
+                </div>
+                <div class="field">
+                    <button type="submit">log in</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="https://use.fontawesome.com/41270f7230.js"></script>
+</body>
+</html>
