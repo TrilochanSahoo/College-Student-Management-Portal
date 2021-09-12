@@ -272,6 +272,99 @@ footer p{
     text-align: center;
     color: #999;
 }
+
+/* registration */
+.form_container{
+    max-width: 700px;
+    width: 100%;
+    background: #fff;
+    padding: 25px 30px;
+    border-radius: 5px;
+
+}
+.form_container .title{
+    font-size: 25px;
+    font-weight: 500;
+    position: relative;
+}
+
+.form_container .title::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 50px;
+    background: #eb3007;
+}
+
+.form_container form .input_details{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px 0 12px 0;
+}
+
+form .input_details .input_box{
+    margin-bottom: 15px;
+    width: calc(95% / 2);
+}
+
+.input_details .input_box .details{
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+
+.input_details .input_box input,select{
+    margin: 0 5px;
+    height: 30px;
+    width: 100%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left: 15px;
+    font-size: 12px;
+    border-bottom-width: 2px;
+    transition: all 0.3s ease;
+}
+
+form .gender_option{
+    margin-top: 15px;
+    font-size: 14px;
+    display: flex;
+}
+
+.input_details .input_box .gender_option input{
+    height: 20px;
+    width: 20%;
+}
+
+form .button{
+    height: 40px;
+    margin: 10px 0;
+}
+
+form .button input{
+    height: 100%;
+    width: 100%;
+    outline: none;
+    color: #fff;
+    background-color: #eb3007;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border-radius: 10px;
+}
+form .button input:hover{
+    background-color: #fff;
+    border: 1px solid #eb3007;
+    color: #eb3007;
+}
+
 @media (max-width:991px){
     footer{
         padding: 40px;
