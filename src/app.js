@@ -5,6 +5,7 @@ const app = express()
 
 require("./db/conn")
 const Admindb = require("./models/admindb")
+const Studentdb = require("./models/studentdb")
 
 const port = process.env.PORT || 3000
 
@@ -78,6 +79,33 @@ app.get('/studentRegistration',(req, res)=>{
 
 app.get('/adminDashboard',(req, res)=>{
     res.render("adminDashboard")
+})
+
+app.post("/studentRegistration",async(req, res)=>{
+    try {
+        const password = req.body.password
+        const cpassword = req.body.confirmpassword
+        if (password===cpassword){
+            const registerStudent = new Studentdb({
+                fullname : req.body.fullname,
+                email : req.body.email,
+                rollno : req.body.rollno,
+                mobileno : req.body.mobileno,
+                password : req.body.password,
+                department : req.body.department,
+                section : req.body.section,
+                year : req.body.year,
+                gender : req.body.gender
+            })
+            const registeredStudent = await registerStudent.save()
+            res.status(201).render("adminDashboard")
+        }else{
+            res.send("password are not matching")
+        }
+        
+    } catch (error) {
+        res.status(400).send(error)
+    }
 })
 
 
