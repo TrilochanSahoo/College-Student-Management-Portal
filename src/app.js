@@ -77,16 +77,20 @@ app.get('/studentRegistration',(req, res)=>{
     res.render("studentRegistration")
 })
 
-app.get('/studentDatabase',(req, res)=>{
-    Studentdb.find()
-        .then(user =>{
-            // console.log(req.query)
-            res.send(user)
-        })
-        .catch(err => {
-            res.status(500).send("Error occured")
-        })
+// app.get('/studentDatabase',(req, res)=>{
+//     Studentdb.find()
+//         .then(user =>{
+//             // console.log(req.query)
+//             res.send(user)
+//         })
+//         .catch(err => {
+//             res.status(500).send("Error occured")
+//         })
 
+// })
+
+app.get('/studentDatabase',(req,res)=>{
+    res.render("studentDatabase")
 })
 
 app.post("/studentRegistration",async(req, res)=>{

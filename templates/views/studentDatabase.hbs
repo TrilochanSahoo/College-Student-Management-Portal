@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>student database</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css" integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <ul class="nav-list">
+                    <li>
+                        <a href="/adminDashboard">Home</a>
+                    </li>
+                    <li>
+                        <a href="/studentRegistration">Registration
+                            {{!-- <i class="icon ion-md-arrow-dropdown"></i> --}}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/mark">marks</a>
+                    </li>
+                    <li>
+                        <a href="/studentDatabase">Database</a>
+                    </li>
+                    <li class="btn"> <a href="/">Log out</a></li>
+                    <!-- <button class="move-right btn">Log in </button> -->
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main id="student_site">
+        <div class="table_container">
+            <div class="box_title">
+                <span>Student Database</span>
+            </div>
+            <form action="/" method="post">
+            <table class="table">
+                <thead class="thead">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Roll No</th>
+                        <th>Department</th>
+                        <th>Email</th>
+                        <th>Phone No</th>
+                        <th>Gender</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>username</td>
+                        <td>787</td>
+                        <td>Mechanical</td>
+                        <td>useremail@gmail.com</td>
+                        <td>4545324</td>
+                        <td>Male</td>
+                        <td>
+                            <a href="#" class="btn btn_update">
+                                <span><i class="fas fa-pencil-alt"></i></span>
+                            </a>
+                            <a class="btn btn_delete">
+                                <span><i class="fas fa-times"></i></span>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </form>
+        </div>
+    </main>
+    <script src="https://use.fontawesome.com/41270f7230.js"></script>
+</body>
+</html>
