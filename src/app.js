@@ -77,8 +77,16 @@ app.get('/studentRegistration',(req, res)=>{
     res.render("studentRegistration")
 })
 
-app.get('/adminDashboard',(req, res)=>{
-    res.render("adminDashboard")
+app.get('/studentDatabase',(req, res)=>{
+    Studentdb.find()
+        .then(user =>{
+            // console.log(req.query)
+            res.send(user)
+        })
+        .catch(err => {
+            res.status(500).send("Error occured")
+        })
+
 })
 
 app.post("/studentRegistration",async(req, res)=>{
@@ -98,7 +106,7 @@ app.post("/studentRegistration",async(req, res)=>{
                 gender : req.body.gender
             })
             const registeredStudent = await registerStudent.save()
-            res.status(201).render("adminDashboard")
+            res.status(201).render("studentDatabase")
         }else{
             res.send("password are not matching")
         }

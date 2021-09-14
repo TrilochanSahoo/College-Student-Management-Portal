@@ -14,9 +14,9 @@ const adminDbSchema = new mongoose.Schema({
 const Admindb = new mongoose.model("Admindb",adminDbSchema)
 
 // insert documnet data
-const data1 = new Admindb({
-    userid : "admin",
-    password : "123"
-})
-data1.save()
+// const data1 = new Admindb({
+//     userid : "admin",
+//     password : "123"
+// })
+// data1.save()
 module.exports = Admindb
