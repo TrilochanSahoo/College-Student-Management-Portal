@@ -283,19 +283,23 @@ footer p{
     box-shadow: -1px 4px 28px 0px rgba(0, 0, 0, 0.85);
     border-radius: 5px;
 }
-.initial_container .button_container{
+.initial_container button{
     height: 3.5rem;
     width: 100%;
     margin: 0.7rem auto;
     background-color: #111;
-    cursor: pointer;
-    line-height: 3rem;
-}
-.initial_container .button_container .button{
-    text-decoration: none;
-    padding: 1rem 2rem;
-    font-size: 1.3rem;
+    border: none;
     color: white;
+    cursor: pointer;
+    font-size: 1.3rem;
+    text-align: center;
+}
+.initial_container button:hover{
+    color: #111;
+    background-color: white;
+    border: 2px solid #111;
+    font-size: 1.4rem;
+    font-weight: 600;
 }
 
 /* registration */

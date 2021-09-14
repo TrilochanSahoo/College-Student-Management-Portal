@@ -4,24 +4,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    {{!-- <link rel="stylesheet" href="style/loginStyle.css"> --}}
+    <title>College Portal LogIn</title>
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css" integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">
 </head>
 <body>
     {{>navbar}}
     <div class="initial_container">
-        <div class="button_container">
-            <a class="button" href="/adminLogin">Login as Admin</a>
-        </div>
-        <div class="button_container">
-            <a class="button" href="/staffLogin">Login as Staff</a>
-        </div>
-        <div class="button_container">
-            <a class="button" href="/studentLogin">Login as Student</a>
-        </div>
+        <button id="adminlogin">Login as Admin</button>
+        <button id="stafflogin">Login as Staff</button>
+        <button id="studentlogin">Login as Student</button>
     </div>
+    <script type="text/javascript">
+        const loginadmin = document.getElementById("adminlogin")
+        const loginstaff = document.getElementById("stafflogin")
+        const loginstudent = document.getElementById("studentlogin")
+        loginadmin.addEventListener("click",()=>{
+            console.log("clicked")
+            window.location.href = "/adminLogin"
+        })
+        loginstaff.addEventListener("click",()=>{
+            console.log("clicked")
+            window.location.href = "/staffLogin"
+        })
+        loginstudent.addEventListener("click",()=>{
+            console.log("clicked")
+            window.location.href = "/studentLogin"
+        })
+    </script>
     <script src="https://use.fontawesome.com/41270f7230.js"></script>
 </body>
 </html>
