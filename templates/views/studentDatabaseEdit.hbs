@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css" integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+    <!-- navbar  -->
+    <header>
+        <div class="container">
+            <nav>
+                <ul class="nav-list">
+                    <li>
+                        <a href="/adminDashboard">Home</a>
+                    </li>
+                    <li>
+                        <a href="/studentRegistration">Registration
+                            {{!-- <i class="icon ion-md-arrow-dropdown"></i> --}}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/mark">marks</a>
+                    </li>
+                    <li>
+                        <a href="/studentDatabase">Database</a>
+                    </li>
+                    <li class="btn"> <a href="/">Log out</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    {{>registration}}
+
+    <script src="https://use.fontawesome.com/41270f7230.js"></script>
+</body>
+</html>

@@ -1,11 +1,14 @@
+{{!-- {{#for 0 studentData.length 1}} --}}
+{{#each studentData}}
 <tr>
-    <td>1</td>
-    <td>username</td>
-    <td>787</td>
-    <td>Mechanical</td>
-    <td>useremail@gmail.com</td>
-    <td>4545324</td>
-    <td>Male</td>
+    {{#each this}}
+    <td>{{@fullname}}:{{this}}</td>
+    {{!-- <td>{{studentData[this].fullname}}</td>
+    <td>{{studentData[this].rollno}}</td>
+    <td>{{studentData[this].department}}</td>
+    <td>{{studentData[this].email}}</td>
+    <td>{{studentData[this].phoneno}}</td>
+    <td>{{studentData[this].gender}}</td> --}}
     <td>
         <a href="/studentDatabaseEdit" class="btn btn_update">
             <span><i class="fas fa-pencil-alt"></i></span>
@@ -15,3 +18,5 @@
         </a>
     </td>
 </tr>
+{{/each}}
+{{/each}}

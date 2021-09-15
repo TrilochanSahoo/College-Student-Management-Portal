@@ -19,6 +19,16 @@ app.use(express.urlencoded({extended:false}))
 
 app.set("view engine", "hbs")
 app.set("views", view_path)
+
+// helper function for 'for' loop  
+hbs.registerHelper('for',function(from, to, incr, block){
+    var accum = ''
+    for(var i = from;i<to;i+=incr)
+        accum += block.fn(i)
+    console.log(typeof(parseInt(accum)))
+    return accum
+})
+
 hbs.registerPartials(partials_path)
 app.use(express.static(static_path))
 
@@ -78,21 +88,53 @@ app.get('/studentRegistration',(req, res)=>{
     res.render("studentRegistration")
 })
 
-// app.get('/studentDatabase',(req, res)=>{
-//     Studentdb.find()
-//         .then(user =>{
-//             // console.log(req.query)
-//             res.send(user)
-//         })
-//         .catch(err => {
-//             res.status(500).send("Error occured")
-//         })
+app.get('/studentDatabase',(req, res)=>{
+    Studentdb.find()
+        .then(user =>{
+            // console.log(user)
+            res.render("studentDatabase",{studentData : user})
+        })
+        .catch(err => {
+            res.status(500).send("Error occured")
+        })
 
-// })
-
-app.get('/studentDatabase',(req,res)=>{
-    res.render("studentDatabase")
 })
+
+const updatefun = (req,res)=>{
+    if(!req.body){
+        return res.status(400).send("Data to update can not be empty")
+    }
+    const id = req.params.id
+    Studentdb.findByIdAndUpdate(id, req.body, {useFindAndModify: false})
+        .then(data=>{
+            if(!data){
+                res.status(404).send("can not update user maybe user not found")
+            }else{
+                res.send(data)
+            }
+        })
+        .catch(error =>{
+            res.status(500).send("error update user information")
+        })
+}
+
+const deletefun = (req, res)=>{
+    const id = req.params.id
+    Studentdb.findByIdAndDelete(id)
+        .then(data =>{
+            if(!data){
+                res.status(404).send({message : "can not delete maybe id not present"})
+            }else{
+                res.send({message : "user was deleted successfully"})
+            }
+        })
+        .catch(error => {
+            res.status(500).send({message : "could not delete user id"})
+        })
+}
+app.put('/studentDatabase',updatefun)
+app.delete('/studentDatabase',deletefun)
+
 
 app.post("/studentRegistration",async(req, res)=>{
     try {
