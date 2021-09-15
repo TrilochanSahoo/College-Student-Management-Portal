@@ -61,7 +61,8 @@ app.post("/adminLogin", async(req, res)=>{
             res.status(201).render("adminDashboard")
         }
         else{
-            res.send("password are not matching")
+            // alertmsg()
+            res.render("adminLogin")
         }
     } catch (error) {
         res.status(400).send(error)
