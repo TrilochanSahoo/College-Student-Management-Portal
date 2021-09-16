@@ -30,7 +30,7 @@ hbs.registerPartials(partials_path)
 app.use(express.static(static_path))
 
 // Home  
-app.get('/',(req, res)=>{
+app.get('/index',(req, res)=>{
     res.render("index")
 })
 
@@ -83,17 +83,6 @@ app.get('/adminDashboard',(req, res)=>{
 
 app.get('/studentRegistration',(req, res)=>{
     res.render("studentRegistration")
-})
-
-app.get('/studentDatabase',(req, res)=>{
-    Studentdb.find()
-        .then(user =>{
-            // console.log(user)
-            res.render("studentDatabase",{studentData : user})
-        })
-        .catch(err => {
-            res.status(500).send("Error occured")
-        })
 })
 
 app.get('/studentDatabaseEdit',(req, res)=>{
@@ -175,13 +164,24 @@ app.post("/studentRegistration",async(req, res)=>{
     }
 })
 
-
-
-app.get('*',(req, res)=>{
-    res.render("404error",{
-        errorMsg : "opps! page not found"
-    })
+app.get('/studentDatabase',(req, res)=>{
+    Studentdb.find()
+        .then(user =>{
+            // console.log(user)
+            res.render("studentDatabase",{studentData : user})
+        })
+        .catch(err => {
+            res.status(500).send("Error occured")
+        })
 })
+
+
+
+// app.get('*',(req, res)=>{
+//     res.render("404error",{
+//         errorMsg : "opps! page not found"
+//     })
+// })
 
 app.listen(port,()=>{
     console.log(`server is running`)
