@@ -20,7 +20,7 @@ app.use(express.urlencoded({extended:false}))
 app.set("view engine", "hbs")
 app.set("views", view_path)
 
-// helper function for 'for' loop  
+// helper function for 'inc' loop  
 hbs.registerHelper('inc',function(value, options){
     return parseInt(value)+1
 })
@@ -67,7 +67,7 @@ app.post("/adminLogin", async(req, res)=>{
             res.status(201).render("adminDashboard")
         }
         else{
-            // alertmsg()
+            // alert("Enter valid userId and Password.")
             res.render("adminLogin")
         }
     } catch (error) {
@@ -93,7 +93,21 @@ app.get('/studentDatabase',(req, res)=>{
         .catch(err => {
             res.status(500).send("Error occured")
         })
+})
 
+app.get('/studentDatabaseEdit',(req, res)=>{
+    Studentdb.find({_id : req.query.id})
+        .then(user =>{
+            // console.log(user)
+            res.render("studentDatabaseEdit",{userData : user})
+        })
+        .catch(err => {
+            res.status(500).send("Error occured")
+        })
+})
+
+app.post('/studentDatabaseEdit',(req, res) => {
+    res.render('studentDatabaseEdit')
 })
 
 const updatefun = (req,res)=>{

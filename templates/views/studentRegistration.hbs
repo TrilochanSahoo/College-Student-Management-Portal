@@ -11,31 +11,14 @@
 </head>
 <body>
     <!-- navbar  -->
-    <header>
-        <div class="container">
-            <nav>
-                <ul class="nav-list">
-                    <li>
-                        <a href="/adminDashboard">Home</a>
-                    </li>
-                    <li>
-                        <a href="/studentRegistration">Registration
-                            {{!-- <i class="icon ion-md-arrow-dropdown"></i> --}}
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/mark">marks</a>
-                    </li>
-                    <li>
-                        <a href="/studentDatabase">Database</a>
-                    </li>
-                    <li class="btn"> <a href="/">Log out</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    {{>adminNavbar}}
 
-    {{>registration}}
+    <div class="form_container">
+        <div class="title">New Student Registration</div>
+        <form action="/studentRegistration" method="post">
+            {{>studentForm}}
+        </form>
+    </div>
 
     <script src="https://use.fontawesome.com/41270f7230.js"></script>
 </body>

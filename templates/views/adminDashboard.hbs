@@ -11,31 +11,7 @@
 </head>
 <body>
     <!-- navbar  -->
-    <header>
-        <div class="container">
-            <nav>
-                <ul class="nav-list">
-                    <li>
-                        <a href="/adminDashboard">Home</a>
-                    </li>
-                    <li>
-                        <a href="/studentRegistration">Registration
-                            {{!-- <i class="icon ion-md-arrow-dropdown"></i> --}}
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/mark">marks</a>
-                    </li>
-                    <li>
-                        <a href="/studentDatabase">Database</a>
-                    </li>
-                    <li class="btn"> <a href="/">Log out</a></li>
-                    <!-- <button class="move-right btn">Log in </button> -->
-                </ul>
-            </nav>
-        </div>
-    </header>
-
+    {{>adminNavbar}}
     <section>
         <h1 class="title">Welcome to admin page</h1>
     </section>

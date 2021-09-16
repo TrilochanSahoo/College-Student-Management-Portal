@@ -11,32 +11,113 @@
 </head>
 <body>
     <!-- navbar  -->
-    <header>
-        <div class="container">
-            <nav>
-                <ul class="nav-list">
-                    <li>
-                        <a href="/adminDashboard">Home</a>
-                    </li>
-                    <li>
-                        <a href="/studentRegistration">Registration
-                            {{!-- <i class="icon ion-md-arrow-dropdown"></i> --}}
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/mark">marks</a>
-                    </li>
-                    <li>
-                        <a href="/studentDatabase">Database</a>
-                    </li>
-                    <li class="btn"> <a href="/">Log out</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    {{>adminNavbar}}
+    {{#each userData}}
+    <div class="form_container" >
+        <div class="title">Edit {{this.fullname}} Details</div>
 
-    {{>registration}}
+        <form method="post" id="update_student">
+            <div class="input_details">
+                <div class="input_box">
+                    <span class="details">Full Name</span>
+                    <input type="text" id="id" name="_id" value="{{this._id}}">
+                    <input type="text" id="fullName" name="fullname" value = "{{this.fullname}}" placeholder="Enter Full Name" required>
+                </div>
+                <div class="input_box">
+                    <span class="details">Email Id</span>
+                    <input type="email" id="email" name="email" value = "{{this.email}}" placeholder="Enter Email Id" required>
+                </div>
+                <div class="input_box">
+                    <span class="details">Roll No</span>
+                    <input type="number" id="rollNo" name="rollno" value="{{this.rollno}}" placeholder="Enter Roll No" required>
+                </div>
+                <div class="input_box">
+                    <span class="details">Mobile No</span>
+                    <input type="number" id="mobileNo" name="mobileno" value="{{this.mobileno}}" placeholder="Enter Mobile Number" required>
+                </div>
+                <div class="input_box">
+                    <span class="details">Password</span>
+                    <input type="text" id="password" name="password" value="{{this.password}}" placeholder="Enter password" required>
+                </div>
+                <div class="input_box">
+                    <span class="details">Confirm Password</span>
+                    <input type="text" id="Confirm password" name="confirmpassword" placeholder="Enter Confirm password" required>
+                </div>
+                <div class="input_box">
+                    <span class="details">Department</span>
+                    <select class="option" id="department" name="department">
+                        <option disabled="disabled" selected="selected">--choose option--</option>
+                        <option> Mechanical</option>
+                        <option> EE</option>
+                        <option> EEE</option>
+                        <option> Computer science</option>
+                        <option> ETC</option>
+                        <option> IT</option>
+                    </select>
+                    {{!-- <input type="text" id="fullName" name="fullName" placeholder="Enter Full Name" required> --}}
+                </div>
+                <div class="input_box">
+                    <span class="details">Section</span>
+                    <input type="text" id="section" name="section" value="{{this.section}}" placeholder="Enter section" required>
+                </div>
+                <div class="input_box">
+                    <span class="details">Year</span>
+                    <input type="number" id="year" name="year" value="{{this.year}}" placeholder="Enter Year" required>
+                </div>
 
+                <div class="input_box">
+                    <span class="details">Gender</span>
+                    <div class="gender_option">
+                        <input type="radio" id="gender" name="gender" value="male" >
+                        <span>Male</span>
+                        <input type="radio" id="gender" name="gender" value="female" >
+                        <span>Female</span>
+                    </div>
+                </div>
+            </div>
+            <div class="button">
+                <input type="submit" id="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+    {{/each}}
+    
+    {{!-- <script>
+        let updateStudentValue = []
+        const submit = document.getElementById('submit')
+        const updateContent = (event)=>{
+            event.preventDefault()
+            let student = {
+                id:"" ,
+                fullname : document.getElementById('fullName').value,
+                email : document.getElementById('email').value,
+                rollno : document.getElementById('rollNo').value,
+                mobileno : document.getElementById('mobileNo').value,
+                password : document.getElementById('password').value,
+                department : document.getElementById('department').value,
+                section : document.getElementById('section').value,
+                year : document.getElementById('year').value,
+                gender : document.getElementById('gender').value
+            }
+            updateStudentValue.push(student)
+            console.log(updateStudentValue)
+            
+        }
+        submit.addEventListener('click',updateContent)
+    </script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $("#update_student").submit(function(event){
+            event.preventDefault()
+            var unindexed_array = $("#update_student").serializeArray()
+            let data = {}
+
+            $.map(unindexed_array,function(n,i){
+                data[n['name']] = n['value']
+            })
+            console.log(data._id)
+        })
+    </script>
     <script src="https://use.fontawesome.com/41270f7230.js"></script>
 </body>
 </html>
