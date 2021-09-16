@@ -1,22 +1,19 @@
-{{!-- {{#for 0 studentData.length 1}} --}}
 {{#each studentData}}
-<tr>
-    {{#each this}}
-    <td>{{@fullname}}:{{this}}</td>
-    {{!-- <td>{{studentData[this].fullname}}</td>
-    <td>{{studentData[this].rollno}}</td>
-    <td>{{studentData[this].department}}</td>
-    <td>{{studentData[this].email}}</td>
-    <td>{{studentData[this].phoneno}}</td>
-    <td>{{studentData[this].gender}}</td> --}}
+    <tr>
+        <td>{{inc @index}}</td>
+    <td>{{this.fullname}}</td>
+    <td>{{this.rollno}}</td>
+    <td>{{this.department}}</td>
+    <td>{{this.email}}</td>
+    <td>{{this.mobileno}}</td>
+    <td>{{this.gender}}</td>
     <td>
         <a href="/studentDatabaseEdit" class="btn btn_update">
-            <span><i class="fas fa-pencil-alt"></i></span>
+            <span><i class="fa fa-pencil" aria-hidden="true"></i></span>
         </a>
         <a class="btn btn_delete">
-            <span><i class="fas fa-times"></i></span>
+            <span><i class="fa fa-trash" aria-hidden="true"></i></span>
         </a>
     </td>
-</tr>
-{{/each}}
+    </tr>
 {{/each}}

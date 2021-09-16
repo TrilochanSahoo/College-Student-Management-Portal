@@ -21,12 +21,8 @@ app.set("view engine", "hbs")
 app.set("views", view_path)
 
 // helper function for 'for' loop  
-hbs.registerHelper('for',function(from, to, incr, block){
-    var accum = ''
-    for(var i = from;i<to;i+=incr)
-        accum += block.fn(i)
-    console.log(typeof(parseInt(accum)))
-    return accum
+hbs.registerHelper('inc',function(value, options){
+    return parseInt(value)+1
 })
 
 hbs.registerPartials(partials_path)
