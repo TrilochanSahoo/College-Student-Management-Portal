@@ -3,6 +3,7 @@ const path = require("path")
 const hbs = require('hbs')
 const app = express()
 
+
 require("./db/conn")
 const Admindb = require("./models/admindb")
 const Studentdb = require("./models/studentdb")
@@ -115,6 +116,7 @@ const updatefun = (req,res)=>{
         return res.status(400).send("Data to update can not be empty")
     }
     const id = req.params.id
+    // console.log(id)
     Studentdb.findByIdAndUpdate(id, req.body, {useFindAndModify: false})
         .then(data=>{
             if(!data){
@@ -142,8 +144,8 @@ const deletefun = (req, res)=>{
             res.status(500).send({message : "could not delete user id"})
         })
 }
-app.put('/studentDatabase',updatefun)
-app.delete('/studentDatabase',deletefun)
+app.put('/studentDatabase/:id',updatefun)
+app.delete('/studentDatabase/:id',deletefun)
 
 
 app.post("/studentRegistration",async(req, res)=>{

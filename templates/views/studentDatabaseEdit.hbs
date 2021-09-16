@@ -115,7 +115,16 @@
             $.map(unindexed_array,function(n,i){
                 data[n['name']] = n['value']
             })
-            console.log(data._id)
+            console.log(data)
+
+            var request = {
+                "url" : `http://localhost:3000/studentDatabase/${data._id}`,
+                "method" : "put",
+                "data" : data
+            }
+            $.ajax(request).done(function(response){
+                alert("data uploaded successfully")
+            })
         })
     </script>
     <script src="https://use.fontawesome.com/41270f7230.js"></script>
