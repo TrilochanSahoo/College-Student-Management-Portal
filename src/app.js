@@ -7,6 +7,7 @@ const app = express()
 require("./db/conn")
 const Admindb = require("./models/admindb")
 const Studentdb = require("./models/studentdb")
+const Resultdb = require("./models/semistarresultdb")
 
 const port = process.env.PORT || 3000
 
@@ -159,6 +160,25 @@ app.post("/studentRegistration",async(req, res)=>{
             res.send("password are not matching")
         }
         
+    } catch (error) {
+        res.status(400).send(error)
+    }
+})
+app.post("/studentMarkUploadForm",async(req, res)=>{
+    try {
+            const semistarResult = new Resultdb({
+                rollno : req.body.rollno,
+                semistar : req.body.semistar,
+                subject1 : req.body.subject1,
+                subject2 : req.body.subject2,
+                subject3 : req.body.subject3,
+                subject4 : req.body.subject4,
+                subject5 : req.body.subject5,
+                subject6 : req.body.subject6
+            })
+            const uploadedResult = await semistarResult.save()
+            // alert("result uploaded successfully")
+            res.status(201).render("adminDashboard")
     } catch (error) {
         res.status(400).send(error)
     }
