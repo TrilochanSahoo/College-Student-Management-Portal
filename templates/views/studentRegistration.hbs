@@ -15,10 +15,16 @@
 
     <div class="form_container">
         <div class="title">New Student Registration</div>
-        <form action="/studentRegistration" method="post">
+        <form action="/studentRegistration" method="post" id="new_student">
             {{>studentForm}}
         </form>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $("#new_student").submit((event)=>{
+            alert("Student Registered successfully.")
+        })
+    </script>
 
     <script src="https://use.fontawesome.com/41270f7230.js"></script>
 </body>

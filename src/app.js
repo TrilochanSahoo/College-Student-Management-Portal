@@ -154,7 +154,7 @@ app.post("/studentRegistration",async(req, res)=>{
                 gender : req.body.gender
             })
             const registeredStudent = await registerStudent.save()
-            res.status(201).render("studentDatabase")
+            res.status(201).render("adminDashboard")
         }else{
             res.send("password are not matching")
         }
@@ -175,13 +175,16 @@ app.get('/studentDatabase',(req, res)=>{
         })
 })
 
+app.get('/studentMarkUploadForm',(req, res)=>{
+    res.render('studentMarkUploadForm')
+})
 
 
-// app.get('*',(req, res)=>{
-//     res.render("404error",{
-//         errorMsg : "opps! page not found"
-//     })
-// })
+app.get('*',(req, res)=>{
+    res.render("404error",{
+        errorMsg : "opps! page not found"
+    })
+})
 
 app.listen(port,()=>{
     console.log(`server is running`)
