@@ -77,6 +77,25 @@ app.post("/adminLogin", async(req, res)=>{
     }
 })
 
+app.post("/studentLogin", async(req, res)=>{
+    try {
+        const userid = req.body.userid
+        const password = req.body.password
+
+        const userName = await Studentdb.findOne({email:userid})
+        // console.log(userName)
+        if(userName.password===password){
+            res.status(201).render("studentDashboard",{student : userName})
+        }
+        else{
+            // alert("Enter valid userId and Password.")
+            res.render("studentLogin")
+        }
+    } catch (error) {
+        res.status(400).send(error)
+    }
+})
+
 // admin dashboard 
 app.get('/adminDashboard',(req, res)=>{
     res.render("adminDashboard")
@@ -199,6 +218,22 @@ app.get('/studentMarkUploadForm',(req, res)=>{
     res.render('studentMarkUploadForm')
 })
 
+// student dashboard 
+app.get('/studentDashboard',(req, res)=>{
+    // const id = req.query.id
+    // console.log(id)
+    // Studentdb.find()
+    //     .then(user =>{
+    //         // console.log(user)
+    //         res.render("studentDatabase",{studentData : user})
+    //     })
+    //     .catch(err => {
+    //         res.status(500).send("Error occured")
+    //     })
+        res.render("studentDatabase")
+})
+
+
 
 app.get('*',(req, res)=>{
     res.render("404error",{
@@ -206,6 +241,8 @@ app.get('*',(req, res)=>{
     })
 })
 
+
+// port listen 
 app.listen(port,()=>{
     console.log(`server is running`)
 })

@@ -106,7 +106,7 @@ nav{
 }
 .btn a{
     height: 4rem;
-    line-height: 4rem;
+    line-height: 3rem;
 }
 .btn:hover{
     color: #eb3007;
@@ -456,3 +456,22 @@ table{
     color: #fff;
     background-color: rgb(53, 10, 10);
 }
+
+body .black-skin{
+    background-color: rgba(0, 0, 0, 0.849);
+}
+
+.studentDashboard .row .z-depth-3{
+    font-size: 16px;
+    box-shadow: -1px 4px 28px 0px rgba(0, 0, 0, 0.85);
+    border-radius: 5px;
+}
+
+.bg-info, hr{
+    background-color: rgb(53, 10, 10)!important;
+}
+
+h3{
+    color: rgb(53, 10, 10)!important;
+}
+
