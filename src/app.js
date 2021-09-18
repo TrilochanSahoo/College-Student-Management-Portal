@@ -27,6 +27,19 @@ hbs.registerHelper('inc',function(value, options){
     return parseInt(value)+1
 })
 
+// hbs.registerHelper('sum',()=>{
+//     var args = [].concat.apply([],arguments)
+//     var len = args.length
+//     var sum = 0
+//     while(len--){
+//         if(utils.isNumber(args[len])){
+//             sum += Number(args[len])
+//         }
+//     }
+//     return sum
+
+// })
+
 hbs.registerPartials(partials_path)
 app.use(express.static(static_path))
 
@@ -193,7 +206,9 @@ app.post("/studentMarkUploadForm",async(req, res)=>{
                 subject3 : req.body.subject3,
                 subject4 : req.body.subject4,
                 subject5 : req.body.subject5,
-                subject6 : req.body.subject6
+                subject6 : req.body.subject6,
+                total : (parseInt(req.body.subject1) + parseInt(req.body.subject2) + parseInt(req.body.subject3) + parseInt(req.body.subject4) + parseInt(req.body.subject5) + parseInt(req.body.subject6)),
+                percentage : ((parseInt(req.body.subject1) + parseInt(req.body.subject2) + parseInt(req.body.subject3) + parseInt(req.body.subject4) + parseInt(req.body.subject5) + parseInt(req.body.subject6))/6)
             })
             const uploadedResult = await semistarResult.save()
             // alert("result uploaded successfully")
@@ -202,11 +217,12 @@ app.post("/studentMarkUploadForm",async(req, res)=>{
         res.status(400).send(error)
     }
 })
-
+// var student_details ={}
 app.get('/studentDatabase',(req, res)=>{
     Studentdb.find()
         .then(user =>{
             // console.log(user)
+            var student_details = JSON.parse(JSON.stringify(user))
             res.render("studentDatabase",{studentData : user})
         })
         .catch(err => {
@@ -220,20 +236,35 @@ app.get('/studentMarkUploadForm',(req, res)=>{
 
 // student dashboard 
 app.get('/studentDashboard',(req, res)=>{
-    // const id = req.query.id
-    // console.log(id)
-    // Studentdb.find()
-    //     .then(user =>{
-    //         // console.log(user)
-    //         res.render("studentDatabase",{studentData : user})
-    //     })
-    //     .catch(err => {
-    //         res.status(500).send("Error occured")
-    //     })
-        res.render("studentDatabase")
+        res.render("studentDashboard")
 })
 
+app.get('/studentShowResult',(req, res)=>{
+    const rollno=req.query.id
+    let student_details = {}
+    Studentdb.find({rollno : rollno})
+        .then(user =>{
+            // console.log(user)
+            student_details = {...user[0]}
+            // res.render("studentDatabase",{studentData : user})
+        })
+        .catch(err => {
+            res.status(500).send("Error occured")
+        })
 
+    Resultdb.find({rollno : rollno})
+        .then(user =>{
+            // console.log(user)
+            // console.log(student_details._doc)
+
+            res.render("studentShowResult",{semistarMark : user, student : student_details._doc})
+        })
+        .catch(err => {
+            res.status(500).send("Error occured")
+        })
+        
+    // res.render("studentShowResult")
+})
 
 app.get('*',(req, res)=>{
     res.render("404error",{

@@ -309,6 +309,7 @@ footer p{
     background: #fff;
     padding: 25px 30px;
     border-radius: 5px;
+    box-shadow: 1px 3px 10px #e9ecef;
 
 }
 .form_container .title{
@@ -323,7 +324,7 @@ footer p{
     left: 0;
     bottom: 0;
     height: 3px;
-    width: 50px;
+    width: 8rem;
     background: rgb(53, 10, 10);;
 }
 
@@ -421,10 +422,12 @@ form .button input:hover{
 
 /* student database  */
 .table_container{
+    margin-top: 10px;
     background-color: white;
     max-width: 1024px;
     font-size: 1.5rem;
     box-shadow: 1px 3px 10px #e9ecef;
+    border-radius: 5px;
 
 }
 .box_title{
@@ -437,9 +440,10 @@ form .button input:hover{
 table{
     border-spacing: 0;
     width: 100%;
+    
 }
 .table td, .table th{
-    padding: .75em;
+    padding: 0.75em 1em;
     vertical-align: top;
     text-align: center;
     border-top: 1px solid #999;
@@ -458,7 +462,7 @@ table{
 }
 
 body .black-skin{
-    background-color: rgba(0, 0, 0, 0.849);
+    background-color: rgba(0, 0, 0, 0.726);
 }
 
 .studentDashboard .row .z-depth-3{
@@ -474,4 +478,30 @@ body .black-skin{
 h3{
     color: rgb(53, 10, 10)!important;
 }
+
+.result_table td,.result_table th{
+    padding: 0.5em 5.2em;
+}
+
+.input_details .input_box .input_info{
+    display: flex;
+    /* flex: 2 2; */
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.input_details .input_box .value{
+    margin: 0 5px;
+    height: 30px;
+    width: 70%;
+    outline: none;
+    background-color: rgba(53, 10, 10, 0.219) ;
+    padding: 4px 0 0 13px;
+    font-size: 16px;
+}
+
+.input_info span{
+    flex: 2 3;
+}
+
 

@@ -32,6 +32,13 @@ const resultDbSchema = new mongoose.Schema({
     subject6:{
         type : Number,
         required:true
+    },
+    total:{
+        type : Number,
+        required:true
+    },
+    percentage:{
+        type:Number
     }
 
 })

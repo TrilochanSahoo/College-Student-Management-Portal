@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>student mark</title>
+    {{!-- <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet"> --}}
+    <link rel="stylesheet" type="text/css" href="style/style.css">
+    {{!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css" integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous"> --}}
+</head>
+<body>
+    {{!-- {{>studentNavbar}} --}}
+    {{!-- {{semistarMark}} --}}
+    {{!-- {{student.fullname}} --}}
+    {{!-- {{StudentData}} --}}
+    <div class="form_container" >
+        <div class="title">{{student.fullname}} Details</div>
+        <form>
+            <div class="input_details">
+                <div class="input_box ">
+                    <div  class="input_info">
+                        <span class="details">Full Name</span>
+                        <span class="details value">{{student.fullname}}</span>
+                    </div>
+                </div>
+                <div class="input_box ">
+                    <div  class="input_info">
+                        <span class="details">Roll No.</span>
+                        <span class="details value">{{student.rollno}}</span>
+                    </div>
+                </div>
+                <div class="input_box ">
+                    <div  class="input_info">
+                        <span class="details">Department</span>
+                        <span class="details value">{{student.department}}</span>
+                    </div>
+                </div>
+                <div class="input_box ">
+                    <div  class="input_info">
+                        <span class="details">Section</span>
+                        <span class="details value">{{student.section}}</span>
+                    </div>
+                </div>
+                <div class="input_box ">
+                    <div  class="input_info">
+                        <span class="details">Year</span>
+                        <span class="details value">{{student.year}}year</span>
+                    </div>
+                </div>
+                {{#each semistarMark}}
+                <div class="input_box ">
+                    <div  class="input_info">
+                        <span class="details">Semistar</span>
+                        <span class="details value">{{this.semistar}}th</span>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </form>
+    </div>
+    <main>
+        <div class="table_container">
+            <div class="box_title">
+                <span>Result</span>
+            </div>
+            {{!-- <form action="/" method="post"> --}}
+            <table class="table result_table">
+                <thead class="thead">
+                    <tr>
+                        <th>ID</th>
+                        <th>Subject Name</th>
+                        <th>Mark</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each semistarMark}}
+                        <tr>
+                            <td>1</td>
+                            <td>subject1</td>
+                            {{!-- {{semistarMark}} --}}
+                            <td>{{this.subject1}}</td>
+
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>subject2</td>
+                            <td>{{this.subject2}}</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>subject3</td>
+                            <td>{{this.subject3}}</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>subject4</td>
+                            <td>{{this.subject4}}</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>subject5</td>
+                            <td>{{this.subject5}}</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>subject6</td>
+                            <td>{{this.subject6}}</td>
+                        </tr>
+                        <tr>
+                            <th>Total</th>
+                            <th>                    </th>
+                            <th>{{this.total}}</th>
+                        </tr>
+                        <tr>
+                            <th>Percentage</th>
+                            <th>                    </th>
+                            <th>{{this.percentage}}%</th>
+                        </tr>
+                    
+                    {{/each}}
+                </tbody>
+            </table>
+            {{!-- </form> --}}
+        </div>
+    </main>
+
+    {{!-- <script src="https://use.fontawesome.com/41270f7230.js"></script> --}}
+</body>
+</html>
