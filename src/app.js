@@ -7,6 +7,7 @@ const app = express()
 require("./db/conn")
 const Admindb = require("./models/admindb")
 const Studentdb = require("./models/studentdb")
+const Staffdb = require("./models/staffdb")
 const Resultdb = require("./models/semistarresultdb")
 
 const port = process.env.PORT || 3000
@@ -114,6 +115,7 @@ app.get('/adminDashboard',(req, res)=>{
     res.render("adminDashboard")
 })
 
+// admin dashboard for student
 app.get('/studentRegistration',(req, res)=>{
     res.render("studentRegistration")
 })
@@ -196,6 +198,7 @@ app.post("/studentRegistration",async(req, res)=>{
         res.status(400).send(error)
     }
 })
+
 app.post("/studentMarkUploadForm",async(req, res)=>{
     try {
             const semistarResult = new Resultdb({
@@ -211,17 +214,15 @@ app.post("/studentMarkUploadForm",async(req, res)=>{
                 percentage : ((parseInt(req.body.subject1) + parseInt(req.body.subject2) + parseInt(req.body.subject3) + parseInt(req.body.subject4) + parseInt(req.body.subject5) + parseInt(req.body.subject6))/6)
             })
             const uploadedResult = await semistarResult.save()
-            // alert("result uploaded successfully")
             res.status(201).render("adminDashboard")
     } catch (error) {
         res.status(400).send(error)
     }
 })
-// var student_details ={}
+
 app.get('/studentDatabase',(req, res)=>{
     Studentdb.find()
         .then(user =>{
-            // console.log(user)
             var student_details = JSON.parse(JSON.stringify(user))
             res.render("studentDatabase",{studentData : user})
         })
@@ -233,6 +234,39 @@ app.get('/studentDatabase',(req, res)=>{
 app.get('/studentMarkUploadForm',(req, res)=>{
     res.render('studentMarkUploadForm')
 })
+
+
+// admin dashboard for staff 
+app.get('/staffRegistration',(req, res)=>{
+    res.render("staffRegistration")
+})
+
+app.post("/staffRegistration",async(req, res)=>{
+    try {
+        const password = req.body.password
+        const cpassword = req.body.confirmpassword
+        if (password===cpassword){
+            const registerStaff = new Staffdb({
+                fullname : req.body.fullname,
+                email : req.body.email,
+                mobileno : req.body.mobileno,
+                password : req.body.password,
+                department : req.body.department,
+                subject : req.body.subject,
+                gender : req.body.gender
+            })
+            const registeredStaff = await registerStaff.save()
+            res.status(201).render("adminDashboard")
+        }else{
+            res.send("password are not matching")
+        }
+        
+    } catch (error) {
+        res.status(400).send(error)
+    }
+})
+
+
 
 // student dashboard 
 app.get('/studentDashboard',(req, res)=>{
