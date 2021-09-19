@@ -98,6 +98,25 @@ app.post("/studentLogin", async(req, res)=>{
     }
 })
 
+app.post("/staffLogin", async(req, res)=>{
+    try {
+        const userid = req.body.userid
+        const password = req.body.password
+
+        const userName = await Staffdb.findOne({email:userid})
+        // console.log(userName)
+        if(userName.password===password){
+            res.status(201).render("staffDashboard",{staff : userName})
+        }
+        else{
+            // alert("Enter valid userId and Password.")
+            res.render("staffLogin")
+        }
+    } catch (error) {
+        res.status(400).send(error)
+    }
+})
+
 // admin dashboard 
 app.get('/adminDashboard',(req, res)=>{
     res.render("adminDashboard")
@@ -341,6 +360,12 @@ app.get('/studentShowResult',(req, res)=>{
         })
         
     // res.render("studentShowResult")
+})
+
+
+// staff dashboard
+app.get('/staffDashboard',(req, res)=>{
+    res.render("staffDashboard")
 })
 
 app.get('*',(req, res)=>{
