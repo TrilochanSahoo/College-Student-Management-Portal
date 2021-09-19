@@ -260,10 +260,20 @@ app.post("/staffRegistration",async(req, res)=>{
         }else{
             res.send("password are not matching")
         }
-        
     } catch (error) {
         res.status(400).send(error)
     }
+})
+
+app.get('/staffDatabase',(req, res)=>{
+    Staffdb.find()
+        .then(user =>{
+            var staff_details = JSON.parse(JSON.stringify(user))
+            res.render("staffDatabase",{staffData : user})
+        })
+        .catch(err => {
+            res.status(500).send("Error occured")
+        })
 })
 
 

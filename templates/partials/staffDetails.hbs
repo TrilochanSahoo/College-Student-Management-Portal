@@ -1,0 +1,18 @@
+{{#each staffData}}
+    <tr>
+        <td>{{inc @index}}</td>
+        <td>{{this.fullname}}</td>
+        <td>{{this.department}}</td>
+        <td>{{this.email}}</td>
+        <td>{{this.mobileno}}</td>
+        <td>{{this.gender}}</td>
+        <td>
+            <a class="delete btn btn_delete" data-id={{this._id}}>
+                <span><i class="fa fa-trash" aria-hidden="true"></i></span>
+            </a>
+            <a href="/studentDatabaseEdit?id={{this._id}}" class="btn btn_update">
+                <span><i class="fa fa-pencil" aria-hidden="true"></i></span>
+            </a>
+        </td>
+    </tr>
+{{/each}}
