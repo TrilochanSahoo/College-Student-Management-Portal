@@ -28,18 +28,6 @@ hbs.registerHelper('inc',function(value, options){
     return parseInt(value)+1
 })
 
-// hbs.registerHelper('sum',()=>{
-//     var args = [].concat.apply([],arguments)
-//     var len = args.length
-//     var sum = 0
-//     while(len--){
-//         if(utils.isNumber(args[len])){
-//             sum += Number(args[len])
-//         }
-//     }
-//     return sum
-
-// })
 
 hbs.registerPartials(partials_path)
 app.use(express.static(static_path))
@@ -135,7 +123,8 @@ app.post('/studentDatabaseEdit',(req, res) => {
     res.render('studentDatabaseEdit')
 })
 
-const updatefun = (req,res)=>{
+
+app.put('/studentDatabase/:id',(req,res)=>{
     if(!req.body){
         return res.status(400).send("Data to update can not be empty")
     }
@@ -152,9 +141,9 @@ const updatefun = (req,res)=>{
         .catch(error =>{
             res.status(500).send("error update user information")
         })
-}
+})
 
-const deletefun = (req, res)=>{
+app.delete('/studentDatabase/:id',(req, res)=>{
     const id = req.params.id
     Studentdb.findByIdAndDelete(id)
         .then(data =>{
@@ -167,9 +156,7 @@ const deletefun = (req, res)=>{
         .catch(error => {
             res.status(500).send({message : "could not delete user id"})
         })
-}
-app.put('/studentDatabase/:id',updatefun)
-app.delete('/studentDatabase/:id',deletefun)
+})
 
 
 app.post("/studentRegistration",async(req, res)=>{
@@ -235,7 +222,6 @@ app.get('/studentMarkUploadForm',(req, res)=>{
     res.render('studentMarkUploadForm')
 })
 
-
 // admin dashboard for staff 
 app.get('/staffRegistration',(req, res)=>{
     res.render("staffRegistration")
@@ -265,6 +251,55 @@ app.post("/staffRegistration",async(req, res)=>{
     }
 })
 
+app.get('/staffDatabaseEdit',(req, res)=>{
+    Staffdb.find({_id : req.query.id})
+        .then(user =>{
+            // console.log(user)
+            res.render("staffDatabaseEdit",{userData : user})
+        })
+        .catch(err => {
+            res.status(500).send("Error occured")
+        })
+})
+
+app.post('/staffDatabaseEdit',(req, res) => {
+    res.render('staffDatabaseEdit')
+})
+
+app.put('/staffDatabase/:id',(req,res)=>{
+    if(!req.body){
+        return res.status(400).send("Data to update can not be empty")
+    }
+    const id = req.params.id
+    // console.log(id)
+    Staffdb.findByIdAndUpdate(id, req.body, {useFindAndModify: false})
+        .then(data=>{
+            if(!data){
+                res.status(404).send("can not update user maybe user not found")
+            }else{
+                res.send(data)
+            }
+        })
+        .catch(error =>{
+            res.status(500).send("error update user information")
+        })
+})
+
+app.delete('/staffDatabase/:id',(req, res)=>{
+    const id = req.params.id
+    Staffdb.findByIdAndDelete(id)
+        .then(data =>{
+            if(!data){
+                res.status(404).send({message : "can not delete maybe id not present"})
+            }else{
+                res.send({message : "user was deleted successfully"})
+            }
+        })
+        .catch(error => {
+            res.status(500).send({message : "could not delete user id"})
+        })
+})
+
 app.get('/staffDatabase',(req, res)=>{
     Staffdb.find()
         .then(user =>{
@@ -275,8 +310,6 @@ app.get('/staffDatabase',(req, res)=>{
             res.status(500).send("Error occured")
         })
 })
-
-
 
 // student dashboard 
 app.get('/studentDashboard',(req, res)=>{

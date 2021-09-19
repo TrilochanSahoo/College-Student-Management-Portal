@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css" integrity="sha384-jLKHWM3JRmfMU0A5x5AkjWkw/EYfGUAGagvnfryNV3F9VqM98XiIH7VBGVoxVSc7" crossorigin="anonymous">
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+    <!-- navbar  -->
+    {{>adminNavbar}}
+    {{userData}}
+    {{#each userData}}
+    <div class="form_container" >
+        <div class="title">Edit {{this.fullname}} Details</div>
+
+        <form method="post" id="update_staff">
+            <div class="input_details">
+                <div class="input_box">
+                    <span class="details">Full Name</span>
+                    <input type="text" id="id" name="_id" value="{{this._id}}">
+                    <input type="text" id="fullName" name="fullname" value = "{{this.fullname}}" placeholder="Enter Full Name" required>
+                </div>
+                <div class="input_box">
+                    <span class="details">Email Id</span>
+                    <input type="email" id="email" name="email" value = "{{this.email}}" placeholder="Enter Email Id" required>
+                </div>
+                <div class="input_box">
+                    <span class="details">Mobile No</span>
+                    <input type="number" id="mobileNo" name="mobileno" value="{{this.mobileno}}" placeholder="Enter Mobile Number" required>
+                </div>
+                <div class="input_box">
+                    <span class="details">Department</span>
+                    <select class="option" id="department" name="department">
+                        <option disabled="disabled" selected="selected">--choose option--</option>
+                        <option> Mechanical</option>
+                        <option> EE</option>
+                        <option> EEE</option>
+                        <option> Computer science</option>
+                        <option> ETC</option>
+                        <option> IT</option>
+                    </select>
+                </div>
+                <div class="input_box">
+                    <span class="details">Password</span>
+                    <input type="text" id="password" name="password" value="{{this.password}}" placeholder="Enter password" required>
+                </div>
+                <div class="input_box">
+                    <span class="details">Confirm Password</span>
+                    <input type="text" id="Confirm password" name="confirmpassword" placeholder="Enter Confirm password" required>
+                </div>
+                
+                <div class="input_box">
+                    <span class="details">Subject</span>
+                    <input type="text" id="subject" name="subject" value="{{this.subject}}" placeholder="Enter section" required>
+                </div>
+                <div class="input_box">
+                    <span class="details">Gender</span>
+                    <div class="gender_option">
+                        <input type="radio" id="gender" name="gender" value="male" >
+                        <span>Male</span>
+                        <input type="radio" id="gender" name="gender" value="female" >
+                        <span>Female</span>
+                    </div>
+                </div>
+            </div>
+            <div class="button">
+                <input type="submit" id="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+    {{/each}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $("#update_staff").submit(function(event){
+            event.preventDefault()
+            var unindexed_array = $("#update_staff").serializeArray()
+            let data = {}
+
+            $.map(unindexed_array,function(n,i){
+                data[n['name']] = n['value']
+            })
+            console.log(data)
+
+            var request = {
+                "url" : `http://localhost:3000/staffDatabase/${data._id}`,
+                "method" : "put",
+                "data" : data
+            }
+            $.ajax(request).done(function(response){
+                alert("data updated successfully")
+            })
+        })
+    </script>
+    <script src="https://use.fontawesome.com/41270f7230.js"></script>
+</body>
+</html>
