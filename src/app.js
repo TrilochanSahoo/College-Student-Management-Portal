@@ -368,6 +368,43 @@ app.get('/staffDashboard',(req, res)=>{
     res.render("staffDashboard")
 })
 
+app.get('/staffShowResult',(req, res)=>{
+    const subjectid = req.query.id
+    // console.log(subject)
+    var student_details = []
+    var new_object = {}
+    let student_data
+
+    Studentdb.find()
+        .then(async function(user){
+            student_details = user.map(a => {return {...a}})
+            student_data = await (student_details.map(async function(data) {
+                const x = await Resultdb.find({rollno : data._doc.rollno})
+                    .then(userMark =>{
+                        // console.log(subjectid)
+                        const sub = {semistar : userMark[0]._doc.semistar, "subject" : userMark[0]._doc[subjectid]}
+                        new_object = {...data._doc, ...sub}
+                        return new_object
+                        // console.log(new_object)
+                        // res.json(new_object)
+                        // res.render("studentShowResult",{semistarMark : user, student : student_details._doc})
+                    })
+                    .catch(err => {
+                        res.status(500).send("Error in result occured")
+                    })
+                return x
+            }))
+            const data_values = await Promise.all(student_data)
+            // console.log(data_values)
+            res.render("staffShowResult",{studentMarks : data_values, subject : subjectid})
+        })
+        .catch(err => {
+            res.status(500).send("Error occured")
+        })
+        // res.render("staffShowResult")
+})
+
+
 app.get('*',(req, res)=>{
     res.render("404error",{
         errorMsg : "opps! page not found"

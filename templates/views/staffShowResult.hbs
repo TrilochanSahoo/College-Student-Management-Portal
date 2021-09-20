@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>student mark</title>
+    <link rel="stylesheet" type="text/css" href="style/style.css">
+</head>
+<body>
+    {{!-- {{studentMarks}} --}}
+    <main>
+        <div class="table_container">
+            <div class="box_title">
+                <span>{{subject}} Result</span>
+            </div>
+            {{!-- <form action="/" method="post"> --}}
+            <table class="table">
+                <thead class="thead">
+                    <tr>
+                        <th>ID</th>
+                        <th>Student Name</th>
+                        <th>Roll No</th>
+                        <th>Department</th>
+                        <th>{{subject}} Mark</th>
+                        <th>Semester</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each studentMarks}}
+                        <tr>
+                            <td>{{inc @index}}</td>
+                            <td>{{this.fullname}}</td>
+                            <td>{{this.rollno}}</td>
+                            <td>{{this.department}}</td>
+                            <td>{{this.subject}}</td>
+                            <td>{{this.semistar}}</td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+</html>
