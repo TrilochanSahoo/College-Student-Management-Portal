@@ -139,7 +139,7 @@ app.get('/studentDatabaseEdit',(req, res)=>{
 })
 
 app.post('/studentDatabaseEdit',(req, res) => {
-    res.render('studentDatabaseEdit')
+    res.render('adminDashboard')
 })
 
 
@@ -154,12 +154,14 @@ app.put('/studentDatabase/:id',(req,res)=>{
             if(!data){
                 res.status(404).send("can not update user maybe user not found")
             }else{
-                res.send(data)
+                // console.log(data)
+                // res.send(data)
             }
         })
         .catch(error =>{
             res.status(500).send("error update user information")
         })
+    res.status(201).render("adminDashboard")
 })
 
 app.delete('/studentDatabase/:id',(req, res)=>{
