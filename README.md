@@ -1,4 +1,4 @@
-# PRODUCT MANAGEMENT SYSTEM
+# COLLEGE STUDENT MANAGEMENT PORTAL
 
 <h1 align="center">About 💡💡💡 </h1>
 
