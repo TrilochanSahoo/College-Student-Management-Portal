@@ -231,7 +231,6 @@ app.post("/studentMarkUploadForm",async(req, res)=>{
 app.get('/studentDatabase',(req, res)=>{
     Studentdb.find()
         .then(user =>{
-            var student_details = JSON.parse(JSON.stringify(user))
             res.render("studentDatabase",{studentData : user})
         })
         .catch(err => {
@@ -383,16 +382,17 @@ app.get('/staffShowResult',(req, res)=>{
             student_data = await (student_details.map(async function(data) {
                 const x = await Resultdb.find({rollno : data._doc.rollno})
                     .then(userMark =>{
-                        // console.log(subjectid)
+                        // console.log(sub)
                         const sub = {semistar : userMark[0]._doc.semistar, "subject" : userMark[0]._doc[subjectid]}
                         new_object = {...data._doc, ...sub}
+                        console.log(new_object)
                         return new_object
                         // console.log(new_object)
                         // res.json(new_object)
                         // res.render("studentShowResult",{semistarMark : user, student : student_details._doc})
                     })
                     .catch(err => {
-                        res.status(500).send("Error in result occured")
+                        res.status(500).send("Error in result occured"+err)
                     })
                 return x
             }))
